@@ -1,4 +1,4 @@
-const pointCombos = [
+const COMBOS = [
     {"pointCombo": '_1x1', "score": 100},
     {"pointCombo": '_5x1', "score": 50},
     {"pointCombo": '_1-5', "score": 500},
@@ -29,3 +29,5 @@ const pointCombos = [
     {"pointCombo": '_6x5', "score": 2400},
     {"pointCombo": '_6x6', "score": 4800}
 ];
+
+export default COMBOS;

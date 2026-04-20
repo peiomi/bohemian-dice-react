@@ -1,4 +1,4 @@
-const badges = [
+const BADGES = [
     {"level": "blue", "name": "Blue Doppelganger", "description": "Doubles the points of your last throw. Can be used once per game.", "imgUrl": "assets/badge-icons/blueDoppelganger.png"},
     {"level": "blue", "name": "Blue Headstart", "description": "You gain a small point head start at the start of the game.", "imgUrl": "assets/badge-icons/blueHeadstart.png"},
     {"level": "blue", "name": "Blue Fortune", "description": "Allows you to roll one die again. Can be used once per game.", "imgUrl": "assets/badge-icons/blueFortune.png"},
@@ -35,3 +35,5 @@ const badges = [
     {"level": "gold", "name": "Gold Joker", "description": "You can change one die to a Joker. Usable three times per game.", "imgUrl": "assets/badge-icons/goldJoker.png"}
 
 ];
+
+export default BADGES;
