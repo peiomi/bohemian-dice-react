@@ -1,0 +1,44 @@
+.main-menu {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    min-height: 100vh;
+    width: min(95vw, 900px);
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+.main-menu-title {
+    color: black;
+    text-shadow:
+        -2px -2px 0 var(--color-white),
+        1px -1px 0 var(--color-white),
+        -1px 1px 0 var(--color-white),
+        1px 1px 0 var(--color-white);
+    font-size: 50px;
+    font-family: var(--text-header);
+    text-align: center;
+
+}
+
+.menu-buttons {
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    margin-top: 12px;
+}
+
+.menu-buttons, .main-menu-title {
+    position: relative;
+    z-index: 2;
+}
+
+
+
+
+

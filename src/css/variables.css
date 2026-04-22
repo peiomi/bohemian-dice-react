@@ -1,0 +1,31 @@
+/* variables */
+
+:root {
+    --color-pink: #ff6395;
+    --color-barbiePink: #e0218a;
+    --color-lightPink: #e25098;
+    --color-mexPink: #e4007c;
+    --shadow: rgba(0, 0, 0, 0.5);
+    --color-white: #fffaf0;
+
+    --text-header: "Press Start 2P", sans-serif;
+    --text-body: "VT323", monospace;
+    --text-header2: "New Rocker", sans-serif;
+}
+
+/* button hover fx */
+button {
+    font-family: var(--text-body);
+    font-size: clamp(0.8rem, 2.2vw, 1.1rem);
+    background-color: black;
+    color: var(--color-white);
+    padding: 10px 14px;
+    border: 2px solid var(--color-white);
+    cursor: pointer;
+    width: clamp(120px, 35vw, 220px);
+}
+
+button:hover {
+    border-color: var(--color-pink);
+    color: var(--color-pink);
+}
