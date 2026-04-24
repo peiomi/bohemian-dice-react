@@ -1,0 +1,43 @@
+.login-screen {
+    display: flex;
+    background-color: var(--color-pink);
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+}
+
+.name-panel {
+    background: rgba(255, 240, 250, 0.15);
+    border: 2px solid #e25098;
+    padding: 32px 48px;
+    border-radius: 16px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 0 20px rgba(226, 80, 152, 0.4);
+    animation: panelFloat 3s ease-in-out infinite;
+}
+
+.login-header {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    color: black;
+}
+
+.player-input {
+    width: 240px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 2px solid #ff6395;
+    background: rgba(255, 255, 255, 0.85);
+    color: #e25098;
+    font-size: 1.1rem;
+    outline: none;
+    margin-top: 12px;
+    margin-bottom: 20px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}

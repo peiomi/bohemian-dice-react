@@ -9,8 +9,11 @@ const MainMenu = () => {
         <div className='main-menu'>
             <Header className='main-menu-title' text='Bohemian Dice'/>
             <div className='menu-buttons'>
-                <Link to='/name-input' className='menu-button'>
+                <Link to='/game' className='menu-button'>
                     <Button text='Start Game' />
+                </Link>
+                <Link to='/inventory' className='menu-button'>
+                    <Button text='Inventory' />
                 </Link>
                 <Link to='/rules' className='menu-button'>
                     <Button text='Rules' />

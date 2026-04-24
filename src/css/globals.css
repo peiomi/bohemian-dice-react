@@ -1,0 +1,33 @@
+@keyframes panelFloat {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes diceFloat {
+    0%, 100% { transform: translateX(-50%) translateY(0px) rotate(0deg); }
+    50% { transform: translateX(-50%) translateY(-6px) rotate(2deg); }
+}
+
+@keyframes load {
+    0% { width: 0; }
+    50% { width: 100%; }
+    100% { width: 0; }
+}
+
+/* button hover fx */
+button {
+    font-family: var(--text-body);
+    font-size: clamp(0.8rem, 2.2vw, 1.1rem);
+    background-color: black;
+    color: var(--color-white);
+    padding: 10px 14px;
+    border: 2px solid var(--color-white);
+    cursor: pointer;
+    width: clamp(120px, 35vw, 220px);
+}
+
+button:hover {
+    border-color: var(--color-pink);
+    color: var(--color-pink);
+}
