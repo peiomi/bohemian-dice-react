@@ -1,4 +1,5 @@
 import React from "react";
+import './inventory.css';
 
 const InventoryItem = ({ type, item, selected, onClick, disabled }) => {
     return (
@@ -6,7 +7,7 @@ const InventoryItem = ({ type, item, selected, onClick, disabled }) => {
             className={`inventory-item ${selected ? 'selected' : ''} ${disabled ? 'disabled' : ''}`} 
             onClick={!disabled ? onClick : undefined}
         >
-            <p>{type === 'die' ? item.name : item.label}</p>
+            <div className='item-name'>{item.name}</div>
         </div>
     );
 };

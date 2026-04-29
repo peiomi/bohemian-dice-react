@@ -6,7 +6,7 @@ export default class Player {
     constructor(name) {
         this.name = name;
         this.inventory = {
-            dice: Array(6).fill(normalDie),
+            dice: Array.from({ length: 6 }, () => ({...normalDie})),
             badges: []
         };
         this.unlockedLevels = 1;

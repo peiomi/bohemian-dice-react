@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import InventoryItem from "./InventoryItem";
 import Button from '../../components/Button';
 import SubHeader from '../../components/SubHeader';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 
 const InventoryScreen = ({ player, onLoadoutSelected }) => {
+    const navigate = useNavigate();
     const { mode } = useParams();
+    
     const [selectedDice, setSelectedDice] = useState([]);
     const [selectedBadge, setSelectedBadge] = useState(null);
     const isLoadoutMode = mode === 'loadout';
@@ -30,6 +32,9 @@ const InventoryScreen = ({ player, onLoadoutSelected }) => {
         if (selectedDice.length !== 6) {
             alert('Select 6 Dice');
         }
+
+        onLoadoutSelected(selectedDice, selectedBadge);
+        navigate('/game');
     };
 
     return(
