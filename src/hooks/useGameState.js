@@ -7,6 +7,7 @@ import {
     applyResurrect,
     applyTransmutation
 } from '../systems/badgeEffects';
+import { getLevelConfig } from '../systems/levelConfig';
 
 export const useGameState = (isAI = false) => {
     // GameState instance
@@ -18,6 +19,7 @@ export const useGameState = (isAI = false) => {
     const [totalScore, setTotalScore] = useState(gameStateRef.current.totalScore);
     const [busted, setBusted] = useState(gameStateRef.current.busted);
     const [badgeState, setBadgeState] = useState({ usesLeft: 0 });
+    
 
     // initializes dice/badge 
     const initialize = (diceArray, badge) => {

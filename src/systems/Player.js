@@ -1,10 +1,14 @@
 // remember useRef() to create an instance 
 
+import { normalDie } from "../data/DICE-LIST";
+
 export default class Player {
     constructor(name) {
         this.name = name;
-        this.dice = [];
-        this.badges = []
+        this.inventory = {
+            dice: [normalDie, normalDie, normalDie, normalDie, normalDie, normalDie],
+            badges: []
+        };
     }
 
     addDie(die) {
