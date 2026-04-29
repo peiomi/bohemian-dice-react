@@ -26,13 +26,13 @@ const GameScreen = ({ player, levelConfig }) => {
         const badgeLoadout = loadout.badge || null;
 
         playerState.initialize(diceLoadout, badgeLoadout);
-        playerState.state.setLevel(levelConfig);
+        playerState.state.goal = levelConfig.goal;
 
         const aiDice = Array(6).fill(normalDie);
         const aiBadge = null;
 
         aiState.initialize(aiDice, aiBadge);
-        aiState.state.setLevel(levelConfig);
+        aiState.state.goal = levelConfig.goal;
 
         playerState.startTurn();
 
@@ -100,7 +100,7 @@ const GameScreen = ({ player, levelConfig }) => {
 
     return(
         <div className='game-screen'>
-            <SubHeader text={`${player.name} - Level ${levelConfig}`} />
+            <SubHeader text={`${player.name} - Level ${levelConfig.level}`} />
             <DiceArea name='ai' />
             <DiceArea name='player' />
             <Button text='Roll' />
