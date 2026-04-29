@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Button = (props) => {
+const Button = ({ text, ...rest }) => {
     return (
-        <button>{props.text}</button>
+        <button {...rest}>{text}</button>
     );
 };
 

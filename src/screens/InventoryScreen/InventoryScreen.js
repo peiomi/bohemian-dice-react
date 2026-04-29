@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import InventoryItem from "./InventoryItem";
 import Button from '../../components/Button';
 import SubHeader from '../../components/SubHeader';
+import { useParams } from 'react-router-dom';
 
-const InventoryScreen = ({ player, mode='view', onLoadoutSelected }) => {
+
+const InventoryScreen = ({ player, onLoadoutSelected }) => {
+    const { mode } = useParams();
     const [selectedDice, setSelectedDice] = useState([]);
     const [selectedBadge, setSelectedBadge] = useState(null);
     const isLoadoutMode = mode === 'loadout';

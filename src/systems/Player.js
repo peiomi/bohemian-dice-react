@@ -6,21 +6,26 @@ export default class Player {
     constructor(name) {
         this.name = name;
         this.inventory = {
-            dice: [normalDie, normalDie, normalDie, normalDie, normalDie, normalDie],
+            dice: Array(6).fill(normalDie),
             badges: []
         };
+        this.unlockedLevels = 1;
     }
 
     addDie(die) {
-        this.dice.push(die);
+        this.inventory.dice.push(die);
     }
 
     addBadge(badge) {
-        this.badges.push(badge);
+        this.inventory.badges.push(badge);
     }
 
     removeBadge(badgeName) {
-        this.badges = this.badges.filter(b => b.name !== badgeName);
+        this.inventory.badges = this.badges.filter(b => b.name !== badgeName);
+    }
+
+    setLoadout(dice, badge) {
+        this.loadout = { dice, badge };
     }
 
 }

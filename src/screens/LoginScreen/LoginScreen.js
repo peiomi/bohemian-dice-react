@@ -2,15 +2,18 @@ import React, { useState } from 'react';
 import SubHeader from '../../components/SubHeader';
 import Button from '../../components/Button';
 import './login-screen.css';
+import { useNavigate } from 'react-router-dom';
 
 const initialValues = { name: '' }
 const LoginScreen = ({ onLogin }) => {
+    const navigate = useNavigate();
     const [formValues, updateFormValues] = useState(initialValues);
     const { name } = formValues;
 
     const handleSubmit = (e) => {
         e.preventDefault();
         onLogin(name);
+        navigate('/');
     };
 
     const handleChange = (e) => {

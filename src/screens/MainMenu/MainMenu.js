@@ -9,10 +9,10 @@ const MainMenu = () => {
         <div className='main-menu'>
             <Header className='main-menu-title' text='Bohemian Dice'/>
             <div className='menu-buttons'>
-                <Link to='/game' className='menu-button'>
+                <Link to='/level-select' className='menu-button'>
                     <Button text='Start Game' />
                 </Link>
-                <Link to='/inventory' className='menu-button'>
+                <Link to='/inventory/view' className='menu-button'>
                     <Button text='Inventory' />
                 </Link>
                 <Link to='/rules' className='menu-button'>
