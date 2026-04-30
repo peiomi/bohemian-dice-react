@@ -19,10 +19,11 @@ const pipImgs = {
 
 const ComboDisplay = ({ ids }) => {
     return (
-        <>
+        <div className='combo-grid'>
             {selectCombosByIds(ids).map(combo => (
-                <div key={combo.pointCombo} className='combo'>
-                    {combo.dice.map((pip, i) => (
+                <div key={combo.pointCombo} className='combo-cell'>
+                    <div className='combo-dice'>
+                        {combo.dice.map((pip, i) => (
                         <img 
                             key={i}
                             src={pipImgs[pip]}
@@ -31,10 +32,13 @@ const ComboDisplay = ({ ids }) => {
                             alt={`pip ${pip}`}
                         />
                     ))}
-                    <p> - {combo.score}</p>
+                    </div>
+                    <div className='combo-score'>
+                        = {combo.score}
+                    </div>
                 </div>
             ))}
-        </>
+        </div>
     );
 };
 
