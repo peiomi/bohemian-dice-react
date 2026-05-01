@@ -1,6 +1,8 @@
 import React from 'react';
 import AIDice from './AiDice';
 import PlayerDice from './PlayerDice';
+import SubHeader from '../../../components/Header';
+import '../game-screen.css';
 
 const DiceArea = ({ 
     name,
@@ -14,46 +16,46 @@ const DiceArea = ({
     gap = 10
 }) => {
     return (
-        <div style={{ position: "relative", height: size + 40 }}>
-            <div style={{ marginBottom: 8, fontWeight: "bold" }}>
-                {name}'s Dice
-            </div>
+        <div>
+            <SubHeader className='name-header' text={`${name}'s Dice`} />
+            <div className='dice-container'>
 
-            {dice.map((die, i) => {
-                const x = startX + i * (size + gap);
-                const y = startY;
+                {dice.map((die, i) => {
+                    const x = startX + i * (size + gap);
+                    const y = startY;
 
-                const rolling = die.value === null;
-                const face = die.value ?? 1;
+                    const rolling = die.value === null;
+                    const face = die.value ?? 1;
 
-                if (type === "ai") {
+                    if (type === "ai") {
+                        return (
+                            <AIDice
+                                key={i}
+                                x={x}
+                                y={y}
+                                size={size}
+                                face={face}
+                                rolling={rolling[i]}
+                                onRollComplete={() => {}}
+                            />
+                        );
+                    }
+
                     return (
-                        <AIDice
+                        <PlayerDice
                             key={i}
                             x={x}
                             y={y}
                             size={size}
                             face={face}
-                            rolling={rolling[i]}
+                            rolling={rolling}
+                            held={die.kept}
+                            onClick={() => onDieClick(i)}
                             onRollComplete={() => {}}
                         />
                     );
-                }
-
-                return (
-                    <PlayerDice
-                        key={i}
-                        x={x}
-                        y={y}
-                        size={size}
-                        face={face}
-                        rolling={rolling}
-                        held={die.kept}
-                        onClick={() => onDieClick(i)}
-                        onRollComplete={() => {}}
-                    />
-                );
-            })}
+                })}
+            </div>
         </div>
     );
 };

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'; // need this instead of Link to 
 import LEVELS from '../../data/LEVELS';
 import Button from '../../components/Button';
 import SubHeader from '../../components/SubHeader';
+import './level-select.css';
 
 
 const LevelSelectScreen = ({ player, onSelectLevel }) => {
@@ -22,11 +23,12 @@ const LevelSelectScreen = ({ player, onSelectLevel }) => {
 
     return (
         <div className='level-select-screen'>
-            <SubHeader text='Select a Level' />
+            <SubHeader text='Select a Level' className='level-header' />
             <div className='level-grid'>
                 {LEVELS.map((lvl) => (
                     <Button 
                         key={lvl.level}
+                        className='level-button'
                         text={
                             lvl.level <= player.unlockedLevels ? 
                             `Level ${lvl.level} - Goal: ${lvl.goal}` : `Level ${lvl.level} - LOCKED`

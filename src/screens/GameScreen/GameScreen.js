@@ -5,7 +5,7 @@ import DiceArea from './DiceCanvas/DiceArea';
 import ScoreBoard from './ScoreBoard';
 import Button from '../../components/Button';
 import TurnSummaryModal from './TurnSummaryModal';
-import SubHeader from '../../components/SubHeader';
+import Header from '../../components/SubHeader';
 import { normalDie } from '../../data/DICE-LIST';
 
 import './game-screen.css';
@@ -100,7 +100,10 @@ const GameScreen = ({ player, levelConfig }) => {
 
     return(
         <div className='game-screen'>
-            <SubHeader text={`${player.name} - Level ${levelConfig.level}`} />
+            <Header
+                className='game-screen-header'
+                text={`Level ${levelConfig.level}`} 
+            />
             <DiceArea 
                 name='Opponent'
                 type='ai'
@@ -115,9 +118,11 @@ const GameScreen = ({ player, levelConfig }) => {
                     playerState.startTurn();
                 }}
             />
-            <Button text='Roll' />
-            <Button text='Score & Pass' />
-            <Button text='Score & Continue' />
+            <div className='controls'>
+                <Button text='Roll' />
+                <Button text='Score & Pass' />
+                <Button text='Score & Continue' />
+            </div>
             <ScoreBoard 
                 player={player}
                 playerState={playerState}

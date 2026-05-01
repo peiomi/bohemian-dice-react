@@ -1,8 +1,8 @@
 import React from 'react';
 
-const SubHeader = (props) => {
+const SubHeader = ({ text, className }) => {
     return (
-        <h2>{props.text}</h2>
+        <h2 className={className}>{text}</h2>
     );
 };
 
