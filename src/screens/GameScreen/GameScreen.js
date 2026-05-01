@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useGameState } from '../../hooks/useGameState';
 
-import DiceArea from './DiceArea';
+import DiceArea from './DiceCanvas/DiceArea';
 import ScoreBoard from './ScoreBoard';
 import Button from '../../components/Button';
 import TurnSummaryModal from './TurnSummaryModal';
@@ -101,8 +101,20 @@ const GameScreen = ({ player, levelConfig }) => {
     return(
         <div className='game-screen'>
             <SubHeader text={`${player.name} - Level ${levelConfig.level}`} />
-            <DiceArea name='ai' />
-            <DiceArea name='player' />
+            <DiceArea 
+                name='Opponent'
+                type='ai'
+                dice={aiState.dice}
+            />
+            <DiceArea 
+                name={player.name}
+                type='player'
+                dice={playerState.dice}
+                onDieClick={(i) => {
+                    playerState.dice[i].kept = !playerState.dice[i].kept;
+                    playerState.startTurn();
+                }}
+            />
             <Button text='Roll' />
             <Button text='Score & Pass' />
             <Button text='Score & Continue' />

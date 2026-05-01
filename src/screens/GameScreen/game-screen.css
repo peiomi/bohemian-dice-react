@@ -45,3 +45,7 @@
 .row4 {
     grid-row: 4;
 }
+
+.hitbox {
+    opacity: 0;
+}
