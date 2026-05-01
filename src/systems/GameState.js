@@ -41,7 +41,8 @@ export default class GameState {
             ...d,
             kept: false,
             removed: false,
-            value: null
+            value: null,
+            rolling: false
         }));
     }
 }

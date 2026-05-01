@@ -7,6 +7,7 @@ import Button from '../../components/Button';
 import TurnSummaryModal from './TurnSummaryModal';
 import Header from '../../components/SubHeader';
 import { normalDie } from '../../data/DICE-LIST';
+import { scoreDice } from '../../systems/scoring';
 
 import './game-screen.css';
 
@@ -17,6 +18,7 @@ const GameScreen = ({ player, levelConfig }) => {
     const [showModal, setShowModal] = useState(false);
     const [modalData, setModalData] = useState(null);
     const [phase, setPhase] = useState('player');
+    const [refresh, setRefresh] = useState(0);
 
     useEffect(() => {
         if (!player || !levelConfig) return;
@@ -39,7 +41,23 @@ const GameScreen = ({ player, levelConfig }) => {
     }, [player, levelConfig]);
 
     const handleRoll = () => {
-        playerState.rollDice();
+        playerState.dice.forEach(d => {
+            if (!d.kept && !d.removed) {
+                d.rolling = true;
+            }
+        });
+
+        setRefresh(r => r + 1);
+
+        setTimeout(() => {
+            playerState.dice.forEach(d => {
+                if (d.rolling) {
+                    d.value = Math.floor(Math.random() *6) + 1;
+                    d.rolling = false;
+                }
+            });
+            setRefresh(r => r + 1);
+        }, 550);
     };
 
     const handleFinalizeRoll = () => {
@@ -51,8 +69,24 @@ const GameScreen = ({ player, levelConfig }) => {
         }
     };
 
+    const onDieClick = (i) => {
+        const die = playerState.dice[i];
+        die.kept = !die.kept;
+        setRefresh(r => r + 1);
+    };
+
     const handleScoreAndCont = () => {
-        playerState.applyScoring();
+        const keptValues = playerState.dice.filter(d => d.kept).map(d => d.value);
+        const gained = scoreDice(keptValues, playerState.state);
+
+        playerState.dice.forEach(d => {
+            if (d.kept) {
+                d.kept = false;
+                d.removed = true;
+            }
+        });
+
+        playerState.applyScoring(gained);
 
         if (playerState.totalScore >= playerState.state.goal) {
             showTurnSummary('You Win!', playerState.turnScore, playerState.totalScore);
@@ -61,12 +95,24 @@ const GameScreen = ({ player, levelConfig }) => {
         }
 
         playerState.startTurn();
+        setRefresh(r => r + 1);
     };
 
     const handleEndTurn = () => {
-        playerState.applyScoring();
+        const keptValues = playerState.dice.filter(d => d.kept).map(d => d.value);
+        const gained = scoreDice(keptValues, playerState.state);
+
+        playerState.dice.forEach(d => {
+            if (d.kept) {
+                d.kept = false;
+                d.removed = true;
+            }
+        });
+
+        playerState.applyScoring(gained);
         showTurnSummary('Turn Summary', playerState.turnScore, playerState.totalScore);
         setPhase('ai');
+        setRefresh(r => r + 1);
     };
 
     useEffect(() => {
@@ -113,15 +159,12 @@ const GameScreen = ({ player, levelConfig }) => {
                 name={player.name}
                 type='player'
                 dice={playerState.dice}
-                onDieClick={(i) => {
-                    playerState.dice[i].kept = !playerState.dice[i].kept;
-                    playerState.startTurn();
-                }}
+                onDieClick={onDieClick}
             />
             <div className='controls'>
-                <Button text='Roll' />
-                <Button text='Score & Pass' />
-                <Button text='Score & Continue' />
+                <Button text='Roll' onClick={handleRoll} />
+                <Button text='Score & Pass' onClick={handleEndTurn} />
+                <Button text='Score & Continue' onClick={handleScoreAndCont} />
             </div>
             <ScoreBoard 
                 player={player}

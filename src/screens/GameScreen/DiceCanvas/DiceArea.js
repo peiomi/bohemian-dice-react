@@ -8,7 +8,6 @@ const DiceArea = ({
     name,
     type,
     dice = [],
-    rolling = [],
     onDieClick = () => {},
     size = 64,
     startX = 20,
@@ -24,7 +23,6 @@ const DiceArea = ({
                     const x = startX + i * (size + gap);
                     const y = startY;
 
-                    const rolling = die.value === null;
                     const face = die.value ?? 1;
 
                     if (type === "ai") {
@@ -35,7 +33,7 @@ const DiceArea = ({
                                 y={y}
                                 size={size}
                                 face={face}
-                                rolling={rolling[i]}
+                                rolling={die.rolling}
                                 onRollComplete={() => {}}
                             />
                         );
@@ -48,7 +46,7 @@ const DiceArea = ({
                             y={y}
                             size={size}
                             face={face}
-                            rolling={rolling}
+                            rolling={die.rolling}
                             held={die.kept}
                             onClick={() => onDieClick(i)}
                             onRollComplete={() => {}}

@@ -3,7 +3,7 @@ import { useDiceSprites } from '../../../systems/diceSprites';
 import { drawDieFrame, animateRoll } from '../../../systems/diceRendering';
 import DiceHitbox from './DiceHitbox';
 
-const PlayerDice = ({ x, y, size, face, onClick, rolling, onRollComplete }) => {
+const PlayerDice = ({ x, y, size, face, onClick, rolling, held, onRollComplete }) => {
     const canvasRef = useRef(null);
     const sprites = useDiceSprites();
 
@@ -37,10 +37,6 @@ const PlayerDice = ({ x, y, size, face, onClick, rolling, onRollComplete }) => {
                 sprites.frameHeight
             );
         }
-        console.log("sprites.loaded:", sprites.loaded);
-        console.log("sprite:", sprites.playerSheet);
-        console.log("frameWidth:", sprites.frameWidth);
-        console.log("frameHeight:", sprites.frameHeight);
     }, [sprites, face, rolling]);
 
     return (
@@ -50,6 +46,7 @@ const PlayerDice = ({ x, y, size, face, onClick, rolling, onRollComplete }) => {
                 width={size}
                 height={size}
                 style={{ position: 'absolute', left: x, top: y }}
+                className={`player-die ${held ? 'kept' : ''}`}
             />
             <DiceHitbox x={x} y={y} size={size} onClick={onClick} />
         </>
