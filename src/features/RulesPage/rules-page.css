@@ -1,0 +1,60 @@
+.rules-wrapper {
+    padding: 1rem;
+    background-color: black;
+    color: #fff;
+}
+
+.combo-card {
+    border-radius: 12px;
+}
+
+.combo-card-body {
+    padding: 16px;
+}
+
+.combo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px 16px;
+}
+
+.combo-cell {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--color-barbiePink);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 8px 12px;
+    
+}
+
+.combo-dice {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.combo-score {
+    font-weight: 700;
+    font-size: .9rem;
+}
+
+.combo-card-header {
+    background: #222;
+    color: black;
+    font-weight: 600;
+}
+
+.rules-section {
+    margin-bottom: 2rem;
+}
+
+.combo-dice img {
+    width: 100%;
+    max-width: 15px;
+    height: auto;
+}
+
+
+

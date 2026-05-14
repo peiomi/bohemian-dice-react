@@ -11,3 +11,36 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* variables */
+
+:root {
+    --color-pink: #ff6395;
+    --color-barbiePink: #e0218a;
+    --color-lightPink: #e25098;
+    --color-mexPink: #e4007c;
+    --color-palePink: #ffc0cb;
+    --shadow: rgba(0, 0, 0, 0.5);
+    --color-white: #fffaf0;
+
+    --text-header: "Press Start 2P", sans-serif;
+    --text-body: "VT323", monospace;
+    --text-header2: "New Rocker", sans-serif;
+}
+
+@keyframes panelFloat {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes diceFloat {
+    0%, 100% { transform: translateX(-50%) translateY(0px) rotate(0deg); }
+    50% { transform: translateX(-50%) translateY(-6px) rotate(2deg); }
+}
+
+@keyframes load {
+    0% { width: 0; }
+    50% { width: 100%; }
+    100% { width: 0; }
+}

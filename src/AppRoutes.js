@@ -1,63 +1,62 @@
 import React, { useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
-import MainMenu from './screens/MainMenu/MainMenu';
-import GameScreen from './screens/GameScreen/GameScreen';
-import InventoryScreen from './screens/InventoryScreen/InventoryScreen';
-import RulesPage from './screens/RulesPage/RulesPage';
-import LoadingScreen from './screens/LoadingScreen/LoadingScreen';
-import LoginScreen from './screens/LoginScreen/LoginScreen';
-import LevelSelectScreen from './screens/LevelSelectScreen/LevelSelectScreen';
+import MainMenu from './features/MainMenu/MainMenu';
+import GameScreen from './features/GameScreen/GameScreen';
+import InventoryScreen from './features/InventoryScreen/InventoryScreen';
+import RulesPage from './features/RulesPage/RulesPage';
+import LoadingScreen from './features/LoadingScreen/LoadingScreen';
+import LoginScreen from './features/LoginScreen/LoginScreen';
+import LevelSelectScreen from './features/LevelSelectScreen/LevelSelectScreen';
 
-import Player from './systems/Player';
-import { getLevelConfig } from './systems/levelConfig';
+const AppRoutes = ({ player, setPlayer, selectedLevel, setSelectedLevel, loading, setLoading, setPlayerLoadout }) => {
+  const navigate = useNavigate();
 
-const AppRoutes = ({ player, setPlayer, selectedLevel, setSelectedLevel, loading, setLoading }) => {
-    const navigate = useNavigate();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+      navigate('/login');
+    }, 1500);
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-          setLoading(false);
-          navigate('/login');
-        }, 1500);
-    
-        return () => clearTimeout(timer);
-      }, []);
-    
-        if (loading) return <LoadingScreen />;
+    return () => clearTimeout(timer);
+  }, []);
 
-        const handleLoadoutSelect = (dice, badge) => {
-            player.setLoadout(dice, badge);
-        };
+  if (loading) return <LoadingScreen />;
 
-    return (
-        <Routes>
-          <Route
-            path='login'
-            element={<LoginScreen onLogin={(name) => setPlayer(new Player(name))} />}
-          />
-          <Route 
-            path='/' 
-            element={<MainMenu player={player} />} 
-          />
-          <Route 
-            path='game' 
-            element={<GameScreen player={player} levelConfig={selectedLevel} />} 
-          />
-          <Route 
-            path='rules' 
-            element={<RulesPage />} 
-          />
-          <Route
-            path='level-select'
-            element={<LevelSelectScreen player={player} onSelectLevel={setSelectedLevel} />}
-          />
-          <Route 
-            path='inventory/:mode' 
-            element={<InventoryScreen player={player} onLoadoutSelected={handleLoadoutSelect} />} 
-          />
-        </Routes>
-    );
+  const handleLoadoutSelect = (dice, badge) => {
+    if (setPlayerLoadout) {
+      setPlayerLoadout(dice, badge);
+    }
+  };
+
+  return (
+    <Routes>
+      <Route
+        path='login'
+        element={<LoginScreen onLogin={setPlayer} />}
+      />
+      <Route
+        path='/'
+        element={<MainMenu player={player} />}
+      />
+      <Route
+        path='game'
+        element={<GameScreen player={player} levelConfig={selectedLevel} />}
+      />
+      <Route
+        path='rules'
+        element={<RulesPage />}
+      />
+      <Route
+        path='level-select'
+        element={<LevelSelectScreen player={player} onSelectLevel={setSelectedLevel} />}
+      />
+      <Route
+        path='inventory/:mode'
+        element={<InventoryScreen player={player} onLoadoutSelected={handleLoadoutSelect} />}
+      />
+    </Routes>
+  );
 
 };
 
